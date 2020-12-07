@@ -2,6 +2,8 @@ const util = require("util");
 
 function prepareBuild(room) {
 
+    console.log(Memory.creeps);
+
     const harvester = util.filterCreepType(
         util.getRoomCreeps(room),
         util.constants.CREEP_HARVESTER
@@ -11,7 +13,7 @@ function prepareBuild(room) {
         return false;
     }
 
-    console.log('building harvester!', harvester.length, Memory);
+    console.log('building harvester!', harvester.length);
 
     let roomIsSpawning = false;
     let richestSpawn   = null;
