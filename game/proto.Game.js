@@ -1,3 +1,5 @@
+const fakeMemory = {};
+
 function proto() {
 
     const tickCache = {};
