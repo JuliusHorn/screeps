@@ -60,10 +60,26 @@ function filterCreepType(creeps, type) {
     return creeps.filter(creep => creep.memory[constants.MEMORY_CREEP_TYPE] === type);
 }
 
+function hashNumber(number) {
+    number.toString(36);
+}
+
+function getUniqueHash() {
+
+    let counter = Memory.counter || -1;
+    counter++;
+    Memory.counter = counter;
+
+    return hashNumber(counter);
+
+}
+
 module.exports = {
     getRoomSpawns,
     getRoomCreeps,
     filterCreepType,
+    getUniqueHash,
+    hashNumber,
     bodyPartCalculator: require("util.bodyPartCalculator"),
     constants
 };

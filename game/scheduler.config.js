@@ -18,7 +18,7 @@ function schedule(
 }
 
 module.exports.plans = [
-    schedule('unit.harvester', 'build', {tick: 10}),
+    schedule('unit.harvester', 'build', {tick: 3}),
     schedule('unit.harvester', 'work', {tick: 10}),
     schedule('cleanupMemory', 'general', {tick: 30}),
 ]

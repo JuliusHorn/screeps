@@ -2,12 +2,16 @@ const util = require("util");
 
 function prepareBuild(room) {
 
-    console.log(Memory.creeps);
+    console.log(Object.keys(Memory));
+    console.log(Object.keys(Memory.creeps));
+    console.log(util.getRoomCreeps(room).map(creep => creep.memory[util.constants.MEMORY_CREEP_TYPE]));
 
     const harvester = util.filterCreepType(
         util.getRoomCreeps(room),
         util.constants.CREEP_HARVESTER
     );
+
+    console.log(harvester);
 
     if (harvester.length !== 0) {
         return false;
