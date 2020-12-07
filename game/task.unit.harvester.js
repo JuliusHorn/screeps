@@ -11,7 +11,7 @@ function prepareBuild(room) {
         return false;
     }
 
-    console.log('building harvester!', harvester.length);
+    console.log('building harvester!', harvester.length, Memory);
 
     let roomIsSpawning = false;
     let richestSpawn   = null;
