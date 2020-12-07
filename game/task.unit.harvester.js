@@ -98,7 +98,7 @@ function findClosestResource(creep) {
 
 }
 
-function startActivity(harvester) {
+function startActivity(creep) {
 
     if (!creep.activity.lastActivity || creep.activity.lastActivity === constants.CREEP_ACTIVITY_TRANSFER) {
         if (creep.store.getFreeCapacity() === 0) {
