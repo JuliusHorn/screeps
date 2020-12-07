@@ -87,7 +87,7 @@ function build() {
 
 function work() {
 
-    Game.creeps.harvester.forEach(harvester => {
+    Game.creepList.harvester.forEach(harvester => {
 
         const target = harvester.pos.findClosestByPath(FIND_SOURCES_ACTIVE);
 

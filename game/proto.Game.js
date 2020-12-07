@@ -28,19 +28,19 @@ function proto() {
     Game.originalRooms  = rooms;
     Game.originalSpawns = spawns;
 
-    Object.defineProperty(Game, 'creeps', {
+    Object.defineProperty(Game, 'creepList', {
         get: () => new CreepList(Object.entries(creeps))
     });
 
-    Object.defineProperty(Game, 'flags', {
+    Object.defineProperty(Game, 'flagList', {
         get: () => new FlagList(Object.entries(flags))
     });
 
-    Object.defineProperty(Game, 'rooms', {
+    Object.defineProperty(Game, 'roomList', {
         get: () => new RoomList(Object.entries(rooms))
     });
 
-    Object.defineProperty(Game, 'spawns', {
+    Object.defineProperty(Game, 'spawnList', {
         get: () => new SpawnList(Object.entries(spawns))
     });
 
