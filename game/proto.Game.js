@@ -34,9 +34,6 @@ function MyGame(originalGame) {
         get: () => new SpawnList(Object.entries(originalGame.spawns))
     });
 
-    return {
-
-    };
 }
 
 function proto() {
