@@ -1,3 +1,8 @@
+const {CreepList} = require("proto.Creep");
+const {SpawnList} = require("proto.Spawn");
+const {FlagList} = require("proto.Flag");
+const {RoomList} = require("proto.Room");
+
 const fakeMemory = {};
 
 function proto() {
