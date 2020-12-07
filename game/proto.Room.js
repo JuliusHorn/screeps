@@ -7,11 +7,11 @@ function proto() {
 
     Object.defineProperty(Room.prototype, 'creeps', {
         get: function() {
-            return Game.tickCache('roomXCreeps', () => {
+            return MyGame.tickCache('roomXCreeps', () => {
 
                 const roomXCreeps = new Map();
 
-                Game.creepList.forEach(creep => {
+                MyGame.creeps.forEach(creep => {
 
                     let creepList = roomXCreeps.get(creep.room);
 
@@ -32,11 +32,11 @@ function proto() {
 
     Object.defineProperty(Room.prototype, 'spawns', {
         get: function() {
-            return Game.tickCache('roomXSpawns', () => {
+            return MyGame.tickCache('roomXSpawns', () => {
 
                 const roomXSpawns = new Map();
 
-                Game.spawnList.forEach(spawn => {
+                MyGame.spawns.forEach(spawn => {
 
                     let spawnList = roomXSpawns.get(spawn.room);
 
