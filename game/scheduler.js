@@ -1,6 +1,17 @@
+const util    = require("util");
 const {plans} = require("scheduler.config");
 
 function canExecutePlan(plan) {
+
+    plan.id = id(plan);
+
+    if (Memory[util.constants.MEMORY_COOLDOWN][plan.id]) {
+        if (Memory[util.constants.MEMORY_COOLDOWN][plan.id] <= Game.time) {
+            delete Memory[util.constants.MEMORY_COOLDOWN][plan.id];
+        } else {
+            return false;
+        }
+    }
 
     const tick = plan.tick;
 
@@ -14,12 +25,22 @@ function canExecutePlan(plan) {
 
 function executePlan(plan) {
 
+    const planStack = {plan};
+
     const module = require(`task.${plan.module}`);
-    module[plan.task]();
+    module[plan.task](planStack);
+
+    if (planStack.cooldown) {
+        Memory[util.constants.MEMORY_COOLDOWN][plan.id] = Game.time + planStack.cooldown;
+    }
 
 }
 
 module.exports.run = function() {
+
+    if (!Memory[util.constants.MEMORY_COOLDOWN]) {
+        Memory[util.constants.MEMORY_COOLDOWN] = {};
+    }
 
     for (let i = 0; i < plans.length; i++) {
 

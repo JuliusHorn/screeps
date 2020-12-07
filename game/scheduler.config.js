@@ -21,4 +21,5 @@ module.exports.plans = [
     schedule('unit.harvester', 'build', {tick: 3}),
     schedule('unit.harvester', 'work', {tick: 5}),
     schedule('cleanupMemory', 'general', {tick: 30}),
+    schedule('stuff', 'generatePixel', {tick: 50}),
 ]
