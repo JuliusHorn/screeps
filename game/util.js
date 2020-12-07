@@ -18,5 +18,6 @@ function getUniqueHash() {
 module.exports = {
     getUniqueHash,
     hashNumber,
+    constants,
     bodyPartCalculator
 };
