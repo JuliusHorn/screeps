@@ -4,7 +4,7 @@ function prepareBuild(room) {
 
     const harvester = room.creeps.harvester;
 
-    if (harvester.length !== 0) {
+    if (harvester.size !== 0) {
         return false;
     }
 
