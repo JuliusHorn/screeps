@@ -61,7 +61,7 @@ function filterCreepType(creeps, type) {
 }
 
 function hashNumber(number) {
-    number.toString(36);
+    return number.toString(36);
 }
 
 function getUniqueHash() {
