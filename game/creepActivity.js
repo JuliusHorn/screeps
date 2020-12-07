@@ -7,7 +7,7 @@ function move(creep) {
 
     const target = Game.getObjectById(creep.activity.payload[constants.CREEP_ACTIVITY_PAYLOAD_TARGET]);
 
-    if (!creep.pos.isEqualTo(target)) {
+    if (!creep.pos.inRangeTo(target, 1)) {
         creep.moveTo(
             target,
             {reusePath: 5}
@@ -21,6 +21,7 @@ function move(creep) {
 }
 
 function startMovingTo(creep, target) {
+    creep.say("start moving");
     creep.activity.startActivity(
         constants.CREEP_ACTIVITY_MOVE,
         {

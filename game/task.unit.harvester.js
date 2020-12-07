@@ -101,7 +101,7 @@ function findClosestResource(creep) {
 function startActivity(creep) {
 
     if (!creep.activity.lastActivity || creep.activity.lastActivity === constants.CREEP_ACTIVITY_TRANSFER) {
-        if (creep.store.getFreeCapacity() === 0) {
+        if (creep.store.getUsedCapacity() === 0) {
             activity.startMovingTo(creep, findClosestResource(creep));
         }
     }
