@@ -63,7 +63,7 @@ function prepareBuild(room) {
 
 function build() {
 
-    Game.rooms.forEach(room => {
+    Game.roomList.forEach(room => {
 
         const preparedBuild = prepareBuild(room);
 
