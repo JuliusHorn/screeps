@@ -5,7 +5,7 @@ class CreepList extends Map {
         this.set(creep.name, creep)
     }
     get harvester() {
-        return new CreepList(this.entries().filter(([,creep]) => creep.isHarvester));
+        return new CreepList([...this.entries()].filter(([,creep]) => creep.isHarvester));
     }
 }
 
