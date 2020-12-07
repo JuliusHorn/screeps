@@ -1,59 +1,38 @@
 const constants = require("constants");
 
-const roomSpawnAssociation = new Map();
-roomSpawnAssociation.initialized = false;
-function getRoomSpawns(room) {
+const roomAssociations = {};
+function getRoomAssociation(room, type) {
 
-    if (!roomSpawnAssociation.initialized) {
+    if (!roomAssociations[type]) {
 
-        roomSpawnAssociation.initialized = true;
+        roomAssociations[type] = new Map
+        const map = roomAssociations[type];
 
-        Object.values(Game.spawns).forEach(spawn => {
+        Object.values(Game[type]).forEach(typeEntity => {
 
-            let spawnList = roomSpawnAssociation.get(spawn.room);
+            let list = map.get(typeEntity.room);
 
-            if (!spawnList) {
-                spawnList = [];
-                roomSpawnAssociation.set(spawn.room, spawnList);
+            if (!list) {
+                list = [];
+                map.set(typeEntity.room, list);
             }
 
-            spawnList.push(spawn);
+            list.push(typeEntity);
 
         });
 
     }
 
-
-
-    return roomSpawnAssociation.get(room) || [];
+    return roomAssociations[type].get(room) || [];
 
 }
 
-const roomCreepAssociation = new Map();
-roomCreepAssociation.initialized = false;
+function getRoomSpawns(room) {
+    return getRoomAssociation(room, 'spawns');
+}
+
 function getRoomCreeps(room) {
-
-    if (!roomCreepAssociation.initialized) {
-
-        roomCreepAssociation.initialized = true;
-
-        Object.values(Game.creeps).forEach(creep => {
-
-            let creepList = roomCreepAssociation.get(creep.room);
-
-            if (!creepList) {
-                creepList = [];
-                roomCreepAssociation.set(creep.room, creepList);
-            }
-
-            creepList.push(creep);
-
-        });
-
-    }
-
-    return roomCreepAssociation.get(room) || [];
-
+    return getRoomAssociation(room, 'creeps');
 }
 
 function filterCreepType(creeps, type) {
