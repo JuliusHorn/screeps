@@ -8,5 +8,6 @@ function generatePixel(planStack) {
 }
 
 module.exports = {
-    generatePixel
+    generatePixel,
+    runActivities: require("creepActivity").runActivities
 };

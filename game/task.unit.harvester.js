@@ -1,4 +1,6 @@
-const util = require("util");
+const util      = require("util");
+const constants = util.constants;
+const activity  = require("creepActivity");
 
 function prepareBuild(room) {
 
@@ -85,14 +87,36 @@ function build() {
 
 }
 
+function findClosestResource(creep) {
+
+    if (!creep.memory[constants.MEMORY_CREEP_RESOURCE]) {
+        const resource = creep.pos.findClosestByPath(FIND_SOURCES_ACTIVE);
+        creep.memory[constants.MEMORY_CREEP_RESOURCE] = resource.id;
+    }
+
+    return Game.getObjectById(creep.memory[constants.MEMORY_CREEP_RESOURCE]);
+
+}
+
+function startActivity(harvester) {
+
+    if (!creep.activity.lastActivity || creep.activity.lastActivity === constants.CREEP_ACTIVITY_TRANSFER) {
+        if (creep.store.getFreeCapacity() === 0) {
+            activity.startMovingTo(creep, findClosestResource(creep));
+        }
+    }
+
+}
+
 function work() {
 
     MyGame.creeps.harvester.forEach(harvester => {
 
-        const target = harvester.pos.findClosestByPath(FIND_SOURCES_ACTIVE);
+        if (harvester.activity.hasActivity) {
+            return;
+        }
 
-        harvester.moveTo(target, {reusePath: 5});
-        harvester.harvest(target);
+        startActivity(harvester);
 
     });
 
