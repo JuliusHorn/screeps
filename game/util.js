@@ -6,7 +6,7 @@ function getRoomSpawns(room) {
 
     if (!roomSpawnAssociation.initialized) {
 
-        roomCreepAssociation.initialized = true;
+        roomSpawnAssociation.initialized = true;
 
         Object.values(Game.spawns).forEach(spawn => {
 
