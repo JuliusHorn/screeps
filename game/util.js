@@ -4,11 +4,11 @@ const tickCacheData = {};
 
 function tickCache(id, construct) {
 
-    if (!tickCacheData[id]) {
-        tickCacheData[id] = construct();
+    if (!tickCacheData.data[id]) {
+        tickCacheData.data[id] = construct();
     }
 
-    return tickCacheData[id];
+    return tickCacheData.data[id];
 
 }
 
