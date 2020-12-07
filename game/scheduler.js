@@ -3,7 +3,7 @@ const {plans} = require("scheduler.config");
 
 function canExecutePlan(plan) {
 
-    plan.id = id(plan);
+    plan.id = `${plan.module}_${plan.task}`;
 
     if (Memory[util.constants.MEMORY_COOLDOWN][plan.id]) {
         if (Memory[util.constants.MEMORY_COOLDOWN][plan.id] <= Game.time) {
