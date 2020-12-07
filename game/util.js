@@ -1,7 +1,31 @@
 const constants = require("constants");
 
-const roomAssociations = {};
+const tickCacheData = {};
+
+function tickCache(id, construct) {
+
+    if (!tickCacheData[id]) {
+        tickCacheData[id] = construct();
+    }
+
+    return tickCacheData[id];
+
+}
+
+function clearTickCache() {
+
+    if (tickCacheData.tick && tickCacheData.tick === Game.time) {
+        return;
+    }
+
+    tickCacheData.tick = Game.time;
+    tickCacheData.data = {};
+
+}
+
 function getRoomAssociation(room, type) {
+
+    const roomAssociations = tickCache('roomAssociations', () => { return {}});
 
     if (!roomAssociations[type]) {
 
@@ -53,11 +77,14 @@ function getUniqueHash() {
 
 }
 
+
 module.exports = {
     getRoomSpawns,
     getRoomCreeps,
     filterCreepType,
     getUniqueHash,
+    tickCache,
+    clearTickCache,
     hashNumber,
     bodyPartCalculator: require("util.bodyPartCalculator"),
     constants
