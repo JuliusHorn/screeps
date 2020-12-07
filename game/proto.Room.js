@@ -11,7 +11,7 @@ function proto() {
 
                 const roomXCreeps = new Map();
 
-                Game.creeps.forEach(creep => {
+                Game.creepList.forEach(creep => {
 
                     let creepList = roomXCreeps.get(creep.room);
 
@@ -36,7 +36,7 @@ function proto() {
 
                 const roomXSpawns = new Map();
 
-                Game.spawns.forEach(spawn => {
+                Game.spawnList.forEach(spawn => {
 
                     let spawnList = roomXSpawns.get(spawn.room);
 
