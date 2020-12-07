@@ -2,8 +2,6 @@ const util = require("util");
 
 function prepareBuild(room) {
 
-    console.log('roomCreeps:', util.getRoomCreeps(room));
-
     const harvester = room.creeps.harvester;
 
     if (harvester.length !== 0) {
