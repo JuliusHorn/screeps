@@ -57,7 +57,7 @@ function prepareBuild(room) {
         spawnBudget
     );
 
-    const name          = `harvester_${Game.time}_${Math.random()}`;
+    const name          = `harvester_${util.getUniqueHash()}`;
     const dryRunResult  = richestSpawn.spawnCreep(bodyParts, name, {dryRun: true});
 
     if (dryRunResult !== OK) {
