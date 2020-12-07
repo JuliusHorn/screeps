@@ -100,9 +100,15 @@ function findClosestResource(creep) {
 
 function startActivity(creep) {
 
-    if (!creep.activity.lastActivity || creep.activity.lastActivity === constants.CREEP_ACTIVITY_TRANSFER) {
+    const lastActivity = creep.activity.lastActivity;
+
+    if (!lastActivity || lastActivity === constants.CREEP_ACTIVITY_TRANSFER) {
         if (creep.store.getUsedCapacity() === 0) {
             activity.startMovingTo(creep, findClosestResource(creep));
+        }
+    } else if (lastActivity === constants.CREEP_ACTIVITY_MOVE) {
+        if (creep.store.getUsedCapacity() === 0) {
+            activity.startHarvesting(creep, findClosestResource(creep));
         }
     }
 

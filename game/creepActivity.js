@@ -20,6 +20,21 @@ function move(creep) {
 
 }
 
+function harvest(creep) {
+
+    const res = {};
+
+    const target = Game.getObjectById(creep.activity.payload[constants.CREEP_ACTIVITY_PAYLOAD_TARGET]);
+    creep.harvest(target);
+
+    if (creep.store.getFreeCapacity() === 0) {
+        res.done = true;
+    }
+
+    return res;
+
+}
+
 function startMovingTo(creep, target) {
     creep.say("start moving");
     creep.activity.startActivity(
@@ -30,8 +45,19 @@ function startMovingTo(creep, target) {
     )
 }
 
+function startHarvesting(creep, target) {
+    creep.say("start harvesting");
+    creep.activity.startActivity(
+        constants.CREEP_ACTIVITY_HARVEST,
+        {
+            [constants.CREEP_ACTIVITY_PAYLOAD_TARGET]: target.id
+        }
+    )
+}
+
 const activityMap = {
-    [constants.CREEP_ACTIVITY_MOVE]: move
+    [constants.CREEP_ACTIVITY_MOVE]: move,
+    [constants.CREEP_ACTIVITY_HARVEST]: harvest,
 };
 
 function runActivity(creep) {
@@ -56,5 +82,6 @@ function runActivities() {
 
 module.exports = {
     startMovingTo,
+    startHarvesting,
     runActivities
 };
