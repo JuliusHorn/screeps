@@ -63,7 +63,7 @@ function prepareBuild(room) {
 
 function build() {
 
-    Game.roomList.forEach(room => {
+    MyGame.rooms.forEach(room => {
 
         const preparedBuild = prepareBuild(room);
 
@@ -87,7 +87,7 @@ function build() {
 
 function work() {
 
-    Game.creepList.harvester.forEach(harvester => {
+    MyGame.creeps.harvester.forEach(harvester => {
 
         const target = harvester.pos.findClosestByPath(FIND_SOURCES_ACTIVE);
 

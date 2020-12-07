@@ -5,44 +5,43 @@ const {RoomList} = require("proto.Room");
 
 const fakeMemory = {};
 
-function proto() {
+function MyGame(originalGame) {
 
     const tickCache = {};
 
-    Game.tickCache = function(id, construct) {
+    this.tickCache = function(id, construct) {
         if (!tickCache[id]) {
             tickCache[id] = construct();
         }
         return tickCache[id];
     };
 
-    Game.fakeMemory = fakeMemory;
+    this.fakeMemory = fakeMemory;
 
-    const creeps = Game.creeps;
-    const flags  = Game.flags;
-    const rooms  = Game.rooms;
-    const spawns = Game.spawns;
-
-    Game.originalCreeps = creeps;
-    Game.originalFlags  = flags;
-    Game.originalRooms  = rooms;
-    Game.originalSpawns = spawns;
-
-    Object.defineProperty(Game, 'creepList', {
-        get: () => new CreepList(Object.entries(creeps))
+    Object.defineProperty(this, 'creeps', {
+        get: () => new CreepList(Object.entries(originalGame.creeps))
     });
 
-    Object.defineProperty(Game, 'flagList', {
-        get: () => new FlagList(Object.entries(flags))
+    Object.defineProperty(this, 'flags', {
+        get: () => new FlagList(Object.entries(originalGame.flags))
     });
 
-    Object.defineProperty(Game, 'roomList', {
-        get: () => new RoomList(Object.entries(rooms))
+    Object.defineProperty(this, 'rooms', {
+        get: () => new RoomList(Object.entries(originalGame.rooms))
     });
 
-    Object.defineProperty(Game, 'spawnList', {
-        get: () => new SpawnList(Object.entries(spawns))
+    Object.defineProperty(this, 'spawns', {
+        get: () => new SpawnList(Object.entries(originalGame.spawns))
     });
+
+    return {
+
+    };
+}
+
+function proto() {
+
+    global.MyGame = new MyGame(Game);
 
 }
 
