@@ -13,7 +13,7 @@ function proto() {
         if (!tickCache[id]) {
             tickCache[id] = construct();
         }
-        return tickCache;
+        return tickCache[id];
     };
 
     Game.fakeMemory = fakeMemory;
