@@ -4,10 +4,7 @@ function prepareBuild(room) {
 
     console.log('roomCreeps:', util.getRoomCreeps(room));
 
-    const harvester = util.filterCreepType(
-        util.getRoomCreeps(room),
-        util.constants.CREEP_HARVESTER
-    );
+    const harvester = room.creeps.harvester;
 
     if (harvester.length !== 0) {
         return false;
@@ -16,7 +13,7 @@ function prepareBuild(room) {
     let roomIsSpawning = false;
     let richestSpawn   = null;
 
-    util.getRoomSpawns(room).forEach(spawn => {
+    room.spawns.forEach(spawn => {
 
         if (spawn.spawning) {
             roomIsSpawning = true;
@@ -66,9 +63,9 @@ function prepareBuild(room) {
 
 }
 
-function build(preparedBuild) {
+function build() {
 
-    Object.values(Game.rooms).forEach(room => {
+    Game.rooms.forEach(room => {
 
         const preparedBuild = prepareBuild(room);
 
@@ -92,7 +89,7 @@ function build(preparedBuild) {
 
 function work() {
 
-    util.filterCreepType(Object.values(Game.creeps), util.constants.CREEP_HARVESTER).forEach(harvester => {
+    Game.creeps.harvester.forEach(harvester => {
 
         const target = harvester.pos.findClosestByPath(FIND_SOURCES_ACTIVE);
 
